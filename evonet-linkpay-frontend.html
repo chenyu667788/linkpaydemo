@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evonet LinkPay 支付演示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        neutral: '#6B7280',
+                        'neutral-light': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- 头部导航 -->
+        <header class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <i class="fa fa-credit-card text-primary text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-gray-900">Evonet LinkPay</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <a href="#" class="text-sm font-medium text-gray-700 hover:text-primary">帮助中心</a>
+                        <a href="#" class="ml-4 text-sm font-medium text-gray-700 hover:text-primary">联系我们</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="flex-grow">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="bg-white rounded-lg card-shadow p-8">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-6">Evonet LinkPay 支付演示</h1>
+                    
+                    <!-- 支付表单 -->
+                    <form id="paymentForm" class="space-y-6">
+                        <!-- 订单信息 -->
+                        <div>
+                            <h2 class="text-lg font-medium text-gray-900 mb-4">订单信息</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="orderId" class="block text-sm font-medium text-gray-700 mb-1">订单编号</label>
+                                    <input type="text" id="orderId" name="orderId" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" value="ORD-20260303-" placeholder="订单编号">
+                                </div>
+                                <div>
+                                    <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">交易金额</label>
+                                    <input type="number" id="amount" name="amount" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" value="100" step="0.01" placeholder="交易金额">
+                                </div>
+                                <div>
+                                    <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">货币</label>
+                                    <select id="currency" name="currency" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="USD">USD - 美元</option>
+                                        <option value="HKD">HKD - 港币</option>
+                                        <option value="CNY">CNY - 人民币</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="reference" class="block text-sm font-medium text-gray-700 mb-1">用户参考</label>
+                                    <input type="text" id="reference" name="reference" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" value="test_user" placeholder="用户参考">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 支付按钮 -->
+                        <div class="pt-4">
+                            <button type="submit" id="payBtn" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-colors duration-200 flex items-center justify-center">
+                                <i class="fa fa-credit-card mr-2"></i>
+                                发起支付
+                            </button>
+                        </div>
+                    </form>
+                    
+
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部 -->
+        <footer class="bg-white border-t border-gray-200 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-neutral">© 2026 Evonet LinkPay Demo. 保留所有权利。</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-sm text-neutral hover:text-primary">隐私政策</a>
+                        <a href="#" class="text-sm text-neutral hover:text-primary">服务条款</a>
+                        <a href="#" class="text-sm text-neutral hover:text-primary">关于我们</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 支付配置
+        const EVONET_CONFIG = {
+            API_ENDPOINT: 'https://sandbox.evonetonline.com/payment',
+            KEY_ID: 'kid_4e103f2ff33c45b39c8df9ee7c8d1336',
+            SECRET_KEY: 'sk_sandbox_ef8e03d031e74642a36309f446074037'
+        };
+
+        // 生成当前时间
+        function getCurrentDateTime() {
+            const now = new Date();
+            return now.toISOString().replace('Z', '+08:00');
+        }
+
+        // 处理URL参数
+        function handleUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const resultType = urlParams.get('resultType');
+            const paymentStatus = urlParams.get('paymentStatus');
+            const orderStatus = urlParams.get('orderStatus');
+            
+            // 检查是否从LinkPay结果页面返回
+            if (resultType === 'Closed' || paymentStatus === 'Failed' || orderStatus === 'Locked') {
+                // 支付超时、关闭、失败或订单锁住，跳转到错误页面
+                window.location.href = 'error.html';
+            } else if (resultType === 'Success' || paymentStatus === 'Success') {
+                // 支付成功，跳转到成功页面
+                window.location.href = 'success.html';
+            }
+        }
+
+        // 页面加载时处理URL参数
+        window.addEventListener('load', handleUrlParams);
+
+        // 表单提交处理
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            console.log('=== 表单提交事件触发 ===');
+            e.preventDefault();
+            
+            // 禁用按钮防止重复提交
+            const payBtn = document.getElementById('payBtn');
+            payBtn.disabled = true;
+            payBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 处理中...';
+            console.log('按钮状态已更新为加载中');
+            
+            // 获取表单数据
+            const orderIdElement = document.getElementById('orderId');
+            const amountElement = document.getElementById('amount');
+            const currencyElement = document.getElementById('currency');
+            const referenceElement = document.getElementById('reference');
+            
+            // 生成唯一订单ID，忽略输入框的默认值
+            const uniqueOrderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+            
+            const formData = {
+                orderId: uniqueOrderId,
+                amount: amountElement ? amountElement.value : '',
+                currency: currencyElement ? currencyElement.value : '',
+                reference: referenceElement ? referenceElement.value : ''
+            };
+            
+            // 更新输入框显示新的订单ID
+            if (orderIdElement) {
+                orderIdElement.value = uniqueOrderId;
+            }
+            
+            console.log('Form data:', formData);
+            
+            // 验证表单数据
+            if (!formData.amount || !formData.currency) {
+                throw new Error('请填写金额和货币');
+            }
+            
+            // 生成当前时间
+            const dateTime = getCurrentDateTime();
+            
+            try {
+                // 构建支付请求数据
+                const requestData = {
+                    merchantTranInfo: {
+                        merchantTranID: formData.orderId,
+                        merchantTranTime: dateTime
+                    },
+                    transAmount: {
+                        currency: formData.currency,
+                        value: formData.amount
+                    },
+                    userInfo: {
+                        reference: formData.reference
+                    }
+                };
+                
+                console.log('Payment request data:', requestData);
+                
+                // 调用后端API
+                const apiUrl = window.location.origin + '/api/create-payment';
+                console.log('准备发送API请求到:', apiUrl);
+                console.log('请求数据:', requestData);
+                
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                .then(response => {
+                    console.log('API响应状态:', response.status);
+                    if (!response.ok) {
+                        throw new Error('API请求失败: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('后端API响应:', data);
+                    
+                    if (data.success) {
+                        // 使用linkUrl而不是paymentUrl
+                        const paymentUrl = data.linkUrl || data.paymentUrl;
+                        console.log('获取到支付链接:', paymentUrl);
+                        
+                        // 直接跳转到支付页面
+                        console.log('跳转到支付页面:', paymentUrl);
+                        window.location.href = paymentUrl;
+                    } else {
+                        throw new Error(data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('错误:', error);
+                    alert('创建支付失败: ' + error.message);
+                })
+                .finally(() => {
+                    // 恢复按钮状态
+                    payBtn.disabled = false;
+                    payBtn.innerHTML = '<i class="fa fa-credit-card mr-2"></i> 发起支付';
+                    console.log('按钮状态已恢复');
+                });
+            } catch (error) {
+                console.error('表单处理错误:', error);
+                alert('创建支付失败: ' + error.message);
+                // 恢复按钮状态
+                payBtn.disabled = false;
+                payBtn.innerHTML = '<i class="fa fa-credit-card mr-2"></i> 发起支付';
+            }
+        });
+    </script>
+</body>
+</html>

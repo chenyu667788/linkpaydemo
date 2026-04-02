@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付成功 - Evonet LinkPay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        neutral: '#6B7280',
+                        'neutral-light': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="min-h-screen flex flex-col">
+        <!-- 头部导航 -->
+        <header class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <i class="fa fa-credit-card text-primary text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-gray-900">Evonet LinkPay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="flex-grow flex items-center justify-center">
+            <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="bg-white rounded-lg shadow p-8 text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                        <i class="fa fa-check text-2xl text-green-600"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900 mb-4">支付成功</h1>
+                    <p class="text-neutral mb-6">您的支付已成功处理，感谢您的购买！</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-neutral">订单状态</span>
+                            <span class="font-medium text-green-600">已支付</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-neutral">支付时间</span>
+                            <span class="font-medium" id="paymentTime"></span>
+                        </div>
+                    </div>
+                    <a href="/evonet-linkpay-frontend.html" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200">
+                        返回首页
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部 -->
+        <footer class="bg-white border-t border-gray-200 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-neutral">© 2026 Evonet LinkPay Demo. 保留所有权利。</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 显示当前时间
+        document.getElementById('paymentTime').textContent = new Date().toLocaleString('zh-CN');
+    </script>
+</body>
+</html>
